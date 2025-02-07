@@ -1,24 +1,32 @@
 require("dotenv").config();
 const express = require("express");
-const morgan = require("morgan"); //(request) loglarini yozish uchun
+const morgan = require("morgan"); 
 const cors = require("cors");
-const connectDB = require("./src/config/db");
+const connectDB = require("./src/config/db.js");
+const logger = require("./logs/logger");
 
-const app = express();
+const app = require("./src/app.js");  
 
-// Middleware
-app.use(express.json());
-app.use(cors()); //hozircha hamma domenga ruxsat beradi keyinchalik cheklov qoshamangit status
-app.use(morgan("dev"));//loglarni toliq yozadi konsolga
+
+app.use(express.json());  
+app.use(cors());          // hozircha barcha domainlarga ruxsat
+app.use(morgan("dev"));   
 
 // Root endpoint
 app.get("/", (req, res) => {
   res.send("ishlayati");
 });
 
-// Port va serverni ishga tushirish
-const PORT = process.env.PORT || 5000;
+
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, async () => {
-  await connectDB(); // MongoDB bilan ulanish
-  console.log(` Server ${PORT} portda ishga tushdi`);
+  try {
+    await connectDB();
+    logger.info(`Server ${PORT} portda ishga tushdi`);  
+    console.log(`Server ${PORT} portda ishga tushdi`);
+  } catch (error) {
+    logger.error("Serverni ishga tushirishda xato: " + error.message);  
+    console.error("Serverni ishga tushirishda xato:", error);
+  }
 });
+
