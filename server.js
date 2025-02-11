@@ -23,10 +23,8 @@ app.listen(PORT, async () => {
   try {
     await connectDB();
     logger.info(`Server ${PORT} portda ishga tushdi`);  
-    console.log(`Server ${PORT} portda ishga tushdi`);
   } catch (error) {
     logger.error("Serverni ishga tushirishda xato: " + error.message);  
-    console.error("Serverni ishga tushirishda xato:", error);
   }
 });
 

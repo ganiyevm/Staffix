@@ -1,9 +1,13 @@
 const winston = require("winston");
 const path = require("path");
 
-// Logger sozlamalari
+// Faqat info va warn darajadagi loglarni qabul qiluvchi filter
+const infoAndWarnFilter = winston.format((info, opts) => {
+  return info.level === "info" || info.level === "warn" ? info : false;
+})();
+
 const logger = winston.createLogger({
-  level: "info",
+  level: "info", // Umumiy log darajasi
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.printf(({ timestamp, level, message }) => {
@@ -11,8 +15,16 @@ const logger = winston.createLogger({
     })
   ),
   transports: [
-    new winston.transports.Console(), 
-    new winston.transports.File({ filename: path.join(__dirname, "../logs/app.log"), level: "info" }) // Log fayliga yozish
+    // Faqat info va warn loglarini yozish
+    new winston.transports.File({
+      filename: path.join(__dirname, "../logs/app.log"),
+      format: winston.format.combine(infoAndWarnFilter),
+    }),
+    // Faqat error loglarini yozish
+    new winston.transports.File({
+      filename: path.join(__dirname, "../logs/error.log"),
+      level: "error",
+    }),
   ],
 });
 

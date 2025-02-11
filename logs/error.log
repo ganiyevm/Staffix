@@ -1,0 +1,5 @@
+2025-02-11T15:53:03.072Z [ERROR]: Signup error for email xndsg@gmail.com: User validation failed: fullname: Path `fullname` is required.
+2025-02-11T15:56:17.792Z [ERROR]: Signup error for email xndsg@gmail.com: User validation failed: fullname: Path `fullname` is required.
+2025-02-11T16:01:41.725Z [ERROR]: Xodim yaratishda xatolik: Employee validation failed: adress: Adress is required
+2025-02-11T16:02:49.095Z [ERROR]: Xodim yaratishda xatolik: Employee validation failed: adress: Adress is required
+2025-02-11T16:04:32.440Z [ERROR]: Xodim yaratishda xatolik: E11000 duplicate key error collection: Staffix.employees index: email_1 dup key: { email: "opssddsjjdfkk@gmail.com" }

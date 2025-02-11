@@ -1,11 +1,9 @@
 const express = require("express");
-const router = express.Router();
 const EmployeeController = require("../controllers/EmployeeController");
 
-// Xodim yaratish (POST)
+const router = express.Router();
 router.post("/", EmployeeController.createEmployee);
 
-// Boshqa route'lar (GET, PUT, DELETE)
 router.get("/employees", EmployeeController.getAllEmployees);
 router.get("/:id", EmployeeController.getEmployeeById);
 router.put("/:id", EmployeeController.updateEmployee);

@@ -46,11 +46,18 @@ const employeeSchema = new mongoose.Schema(
     department: {
       type: String,
       required: [true, "Department is required"],
-      enum: {
-        values: ["HR", "Engineering", "Marketing", "Sales", "Finance"],
-        message: "Department must be HR, Engineering, Marketing, Sales, or Finance",
-      },
+      
     },
+    address: {
+      type: String,
+      required: [true, "Adress is required"],
+      validate: {
+        validator: function (value) {
+          return value.length >= 2;
+        },
+        message: "Adress must be at least 2 characters long",
+      },
+    }
   },
   { timestamps: true }
 );

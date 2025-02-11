@@ -1,6 +1,5 @@
 const Employee = require("../models/Employee.js");
-const logger = require("..//../logs/logger.js");
-
+const logger = require("../../logs/logger"); // Yo‘lni tekshirib chiqish kerak
 
 const createEmployee = async (employeeData) => {
   try {
@@ -13,7 +12,6 @@ const createEmployee = async (employeeData) => {
   }
 };
 
-
 const getAllEmployees = async () => {
   try {
     const employees = await Employee.find();
@@ -24,7 +22,6 @@ const getAllEmployees = async () => {
     throw error;
   }
 };
-
 
 const getEmployeeById = async (id) => {
   try {
@@ -41,7 +38,6 @@ const getEmployeeById = async (id) => {
   }
 };
 
-
 const updateEmployee = async (id, updateData) => {
   try {
     const employee = await Employee.findByIdAndUpdate(id, updateData, { new: true });
@@ -56,7 +52,6 @@ const updateEmployee = async (id, updateData) => {
     throw error;
   }
 };
-
 
 const deleteEmployee = async (id) => {
   try {
