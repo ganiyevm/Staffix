@@ -43,7 +43,7 @@ exports.signin = async (email, password) => {
       return { status: 400, data: { message: "Invalid credentials" } };
     }
 
-    const token = jwt.sign({ id: user._id }, "your_jwt_secret", { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id }, process.env.secretkey, { expiresIn: process.env.expiresIn });
 
     logger.info(`User ${email} signed in successfully.`);
     return { status: 200, data: { token, user: { id: user._id, fullname: user.fullname, email: user.email } } };
