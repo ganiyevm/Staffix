@@ -1,0 +1,18 @@
+<nav>
+  <a href="/signup">Sign Up</a>
+  <a href="/signin">Sign In</a>
+</nav>
+<main>
+  <h2>{{title}}</h2>
+  {{#if error}}
+    <p style="color: red;">{{error}}</p>
+  {{/if}}
+  <form action="/signin" method="POST">
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required value="{{email}}">
+    <label for="password">Parol:</label>
+    <input type="password" name="password" id="password" required>
+    <button type="submit">Kirish</button>
+  </form>
+  <p>Hisobingiz yo'qmi? <a href="/signup">Ro‘yxatdan o‘tish</a></p>
+</main>

@@ -1,5 +1,5 @@
 const Employee = require("../models/Employee.js");
-const logger = require("../../logs/logger"); // Yo‘lni tekshirib chiqish kerak
+const logger = require("../../logs/logger.js"); 
 
 const createEmployee = async (employeeData) => {
   try {

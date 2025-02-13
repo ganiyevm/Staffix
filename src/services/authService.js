@@ -8,8 +8,8 @@ dotenv.config();
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
-const ACCESS_TOKEN_EXPIRES = process.env.ACCESS_TOKEN_EXPIRES 
-const REFRESH_TOKEN_EXPIRES = process.env.REFRESH_TOKEN_EXPIRES 
+const ACCESS_TOKEN_EXPIRES = process.env.ACCESS_TOKEN_EXPIRES;
+const REFRESH_TOKEN_EXPIRES = process.env.REFRESH_TOKEN_EXPIRES;
 
 const createTokens = (userId) => {
   const accessToken = jwt.sign({ id: userId }, ACCESS_TOKEN_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRES });
@@ -90,6 +90,7 @@ exports.refreshToken = async (refreshToken) => {
 
     const user = await User.findById(decoded.id);
     if (!user) {
+      logger.warn(`User not found for refresh token: ${decoded.id}`);
       return { status: 400, data: { message: "User not found" } };
     }
 

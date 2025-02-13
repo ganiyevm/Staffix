@@ -7,8 +7,8 @@ dotenv.config();
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
 const authenticateToken = (req, res, next) => {
-  const token = req.headers["authorization"]?.split(" ")[1]; 
-  
+  const token = req.headers["authorization"]?.split(" ")[1];
+
   if (!token) {
     logger.warn("No access token provided");
     return res.status(401).json({ message: "Access token required" });
@@ -20,7 +20,7 @@ const authenticateToken = (req, res, next) => {
       return res.status(403).json({ message: "Invalid or expired token" });
     }
 
-    req.user = user; 
+    req.user = user;
     next();
   });
 };
